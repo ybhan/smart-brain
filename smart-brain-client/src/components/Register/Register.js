@@ -23,6 +23,10 @@ class Register extends React.Component {
   }
 
   onSubmitRegister = () => {
+    const { name, user, password } = this.state;
+    if (!name || !user || !password) {
+      return console.log("Form not fully filled");
+    }
     fetch('https://xsmart-brain.herokuapp.com/api/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },

@@ -14,6 +14,9 @@ const handleAPICall = (req, res) => {
 }
 
 const handleImage = (db) => (req, res) => {
+  if (!req.body.id) {
+    return res.status(400).json("No id sent to server");
+  }
   const { id } = req.body;
   db('users').where({ id: id })
     .increment('entries', 1)

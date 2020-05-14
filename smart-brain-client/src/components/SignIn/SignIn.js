@@ -18,12 +18,16 @@ class SignIn extends React.Component {
   }
 
   onSubmitSignIn = () => {
+    const { signInUsername, signInPassword } = this.state;
+    if (!signInUsername || !signInPassword) {
+      return console.log("Form not fully filled");
+    }
     fetch('https://xsmart-brain.herokuapp.com/api/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: this.state.signInUsername,
-        password: this.state.signInPassword
+        username: signInUsername,
+        password: signInPassword
       })
     })
       .then(response => response.json())

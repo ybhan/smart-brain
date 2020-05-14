@@ -66,6 +66,9 @@ class App extends Component {
   }
 
   onPictureSubmit = () => {
+    if (!this.state.input) {
+      return console.log("Image url unfilled");
+    }
     this.setState({ imageUrl: this.state.input });
     fetch('https://xsmart-brain.herokuapp.com/api/imageurl', {
       method: 'post',
